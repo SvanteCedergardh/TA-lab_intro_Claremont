@@ -2,12 +2,19 @@ package se.claremont.test;
 
 public class Garage {
 
-    Vehicle[] vehicles = new Vehicle[10];
     String address;
+    //private int numberOfParkingSpaces;
+    Vehicle[] vehicles = new Vehicle[10];
 
     public Garage(String address) {
         this.address = address;
     }
+    /*
+    public void setNumberOfParkingSpaces(int numberOfParkingSpaces) {
+
+        this.numberOfParkingSpaces = numberOfParkingSpaces;
+    }
+    */
 
     public void parkVehicle(int place, Vehicle vehicle) {
 
@@ -17,6 +24,11 @@ public class Garage {
     public Vehicle checkVehicle(int place) {
 
         return vehicles[place];
+    }
+
+    public void changeParkingSpace(int parkingSpace, Vehicle vehicle) {
+
+        vehicles[parkingSpace] = vehicle;
     }
 
     public int getNumberOfCarsWithValueOver(int price) {
@@ -32,6 +44,4 @@ public class Garage {
         }
         return numberOfCars;
     }
-
-
 }

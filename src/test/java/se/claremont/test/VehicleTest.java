@@ -40,4 +40,20 @@ public class VehicleTest {
 
         assertEquals(2, garage.getNumberOfCarsWithValueOver(1000));
     }
+    @Test
+    public void verifyNewParkingSpace() {
+
+        Vehicle ford = new Vehicle("Ford", "Focus");
+        Vehicle volvo = new Vehicle("Volvo", "v70 Turbo");
+        ford.setPrice(195000);
+        volvo.setPrice(149900);
+        Garage corporateGarage = new Garage("Birger Jarlsgatan 7");
+
+        corporateGarage.parkVehicle(5, ford);
+        corporateGarage.parkVehicle(9, volvo);
+
+        corporateGarage.changeParkingSpace(3, ford);
+
+        assertEquals(ford, corporateGarage.checkVehicle(3));
+    }
 }
