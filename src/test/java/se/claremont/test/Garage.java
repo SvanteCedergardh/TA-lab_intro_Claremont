@@ -37,4 +37,19 @@ public class Garage {
         }
         return numberOfCars;
     }
+
+    public Vehicle getMostExpensiveCar() {
+
+        Vehicle mostExpensiveCar = new Vehicle("Dummy", "Dummy");
+        mostExpensiveCar.setPrice(0);
+
+        for (int i = 0; i < vehicles.length; i++) {
+
+            if (vehicles[i] != null && vehicles[i].getPrice() > mostExpensiveCar.getPrice()) {
+
+                mostExpensiveCar = vehicles[i];
+            }
+        }
+        return mostExpensiveCar;
+    }
 }
