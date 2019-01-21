@@ -3,14 +3,10 @@ package se.claremont.test;
 public class Garage {
 
     String address;
-    Vehicle[] vehicles;// = new Vehicle[10];
+    Vehicle[] vehicles = new Vehicle[10];
 
     public Garage(String address) {
         this.address = address;
-    }
-    public void setSizeOfGarage(int parkingLots) {
-
-        this.vehicles = new Vehicle[parkingLots];
     }
 
     public void parkVehicle(int place, Vehicle vehicle) {
@@ -55,5 +51,35 @@ public class Garage {
             }
         }
         return mostExpensiveCar;
+    }
+
+
+
+
+
+
+
+
+    //Change implementation to Stream()
+    public int usingStreamTogetNumberOfCarsWithValueOver(int price) {
+
+        int numberOfCars = 0;
+
+        for (int i = 0; i < vehicles.length; i++) {
+
+            if (vehicles[i] != null && vehicles[i].getPrice() > price) {
+
+                numberOfCars++;
+            }
+        }
+        return numberOfCars;
+    }
+    //Change the implementation to Stream()
+    public Vehicle usingStreamToGetMostExpensiveCar() {
+
+        Vehicle firetruck = new Vehicle("Mercedez", "Firetruck");
+
+        return firetruck;
+
     }
 }
