@@ -11,6 +11,7 @@ public class GarageTest {
 
         Vehicle vehicle1 = new Vehicle("Messerschmidt", "V8");
         Garage garage = new Garage("Birger Jarlsgatan");
+        garage.setSizeOfGarage(10);
 
         garage.parkVehicle(3,vehicle1);
 
@@ -22,7 +23,10 @@ public class GarageTest {
         Vehicle vehicle1 = new Vehicle("Messerschmidt", "V8");
         Vehicle vehicle2 = new Vehicle("Jaguar", "S-type");
         Vehicle vehicle3 = new Vehicle("Volvo", "XC90");
+
         Garage garage = new Garage("Birger Jarlsgatan");
+        garage.setSizeOfGarage(10);
+
         vehicle1.setPrice(999);
         vehicle2.setPrice(2500);
         vehicle3.setPrice(1500);
@@ -39,7 +43,9 @@ public class GarageTest {
         Vehicle volvo = new Vehicle("Volvo", "v70 Turbo");
         ford.setPrice(195000);
         volvo.setPrice(149900);
+
         Garage corporateGarage = new Garage("Birger Jarlsgatan 7");
+        corporateGarage.setSizeOfGarage(10);
 
         corporateGarage.parkVehicle(5, ford);
         corporateGarage.parkVehicle(9, volvo);
@@ -57,6 +63,7 @@ public class GarageTest {
         Vehicle trabant = new Vehicle("Trabant", "V12");
 
         Garage designGarage = new Garage("Vällingbygaraget");
+        designGarage.setSizeOfGarage(15);
 
         messerschmidt.setPrice(64561);
         jaguar.setPrice(68035);

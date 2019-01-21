@@ -3,10 +3,14 @@ package se.claremont.test;
 public class Garage {
 
     String address;
-    Vehicle[] vehicles = new Vehicle[10];
+    Vehicle[] vehicles;// = new Vehicle[10];
 
     public Garage(String address) {
         this.address = address;
+    }
+    public void setSizeOfGarage(int parkingLots) {
+
+        this.vehicles = new Vehicle[parkingLots];
     }
 
     public void parkVehicle(int place, Vehicle vehicle) {
