@@ -6,16 +6,20 @@ import static org.junit.Assert.assertEquals;
 
 public class GarageTest {
 
+
     @Test
     public void parkCarAndCheckVehicle() {
 
         Vehicle vehicle1 = new Vehicle("Messerschmidt", "V8");
         Garage garage = new Garage("Birger Jarlsgatan");
 
+        garage.setSizeOfGarage(10);
+
         garage.parkVehicle(3,vehicle1);
 
         assertEquals(vehicle1, garage.checkVehicle(3));
     }
+
     @Test
     public void getNumberOfExpensiveCars() {
 
@@ -24,6 +28,8 @@ public class GarageTest {
         Vehicle vehicle3 = new Vehicle("Volvo", "XC90");
 
         Garage garage = new Garage("Birger Jarlsgatan");
+
+        garage.setSizeOfGarage(10);
 
         vehicle1.setPrice(999);
         vehicle2.setPrice(2500);
@@ -41,6 +47,7 @@ public class GarageTest {
         Vehicle volvo = new Vehicle("Volvo", "v70 Turbo");
 
         Garage corporateGarage = new Garage("Birger Jarlsgatan 7");
+        corporateGarage.setSizeOfGarage(15);
 
         corporateGarage.parkVehicle(5, ford);
         corporateGarage.parkVehicle(9, volvo);
@@ -58,6 +65,7 @@ public class GarageTest {
         Vehicle trabant = new Vehicle("Trabant", "V12");
 
         Garage designGarage = new Garage("Vällingbygaraget");
+        designGarage.setSizeOfGarage(12);
 
         messerschmidt.setPrice(64561);
         jaguar.setPrice(68035);
@@ -71,7 +79,6 @@ public class GarageTest {
 
         assertEquals(jaguar, designGarage.getMostExpensiveCar());
     }
-
     @Test
     public void getNumberOfExpensiveCarsUsingStream() {
 
@@ -82,5 +89,4 @@ public class GarageTest {
 
 
     }
-
 }
