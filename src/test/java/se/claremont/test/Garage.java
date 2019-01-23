@@ -1,13 +1,14 @@
 package se.claremont.test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Garage {
 
     String address;
-    Vehicle[] vehicles;// = new Vehicle[10];
-    //List<Vehicle> vehicles = new ArrayList<Vehicle>();
+    Vehicle[] vehicles;
 
     public Garage(String address) {
         this.address = address;
@@ -49,6 +50,7 @@ public class Garage {
 
     public Vehicle getMostExpensiveCar() {
 
+        //Set initialized vehicle to null
         Vehicle mostExpensiveCar = new Vehicle("Dummy", "Dummy");
         mostExpensiveCar.setPrice(0);
 
@@ -61,39 +63,21 @@ public class Garage {
         }
         return mostExpensiveCar;
     }
-    public List<Vehicle> convertArrayToList() {
+    //New implementation with Stream().filter()
+    public int getNumberOfCarsUsingStreamWithValueOver(int price) {
 
-        List<Vehicle> parkingLots = new ArrayList<Vehicle>();
-
-        return parkingLots;
+        return (int)Arrays.stream(vehicles)
+                .filter(vehicle -> vehicle != null)
+                .filter(vehicle -> vehicle.getPrice() > price)
+                .count();
     }
 
+    //New implementation with Stream()
+    public Vehicle getMostExpensiveCarUsingStream() {
 
-
-
-
-
-
-
-    //Change implementation to Stream()
-    public int usingStreamToGetNumberOfCarsWithValueOver(int price) {
-
-        int numberOfCars = 0;
-
-        List<Vehicle> vehicles = new ArrayList<Vehicle>();
-
-
-
-        return numberOfCars;
-    }
-    //Change the implementation to Stream()
-    public Vehicle usingStreamToGetMostExpensiveCar() {
-
-        Vehicle firetruck = new Vehicle("Mercedez", "Firetruck");
-
-        List<Vehicle> vehicles = new ArrayList<Vehicle>();
-
-        return firetruck;
-
+        return  Arrays.stream(vehicles)
+                .filter(vehicle -> vehicle != null)
+                .max((vehicle1, vehicle2) -> vehicle1.getPrice() - vehicle2.getPrice())
+                .orElseThrow(() -> new RuntimeException("No vehicle found"));
     }
 }
