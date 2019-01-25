@@ -8,6 +8,15 @@ public class Pet {
     private int id;
     private String name;
     private String[] photoUrls;
+    private String status;
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public int getId() {
         return id;
