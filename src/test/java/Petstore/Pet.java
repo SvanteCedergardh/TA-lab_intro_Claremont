@@ -1,5 +1,8 @@
 package Petstore;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Pet {
 
     private int id;

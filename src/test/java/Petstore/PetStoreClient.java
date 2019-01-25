@@ -7,6 +7,8 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.junit.Assert;
 
+import java.io.IOException;
+
 public class PetStoreClient {
 
     public void putPetInPetStore(Pet myPet) throws JsonProcessingException, UnirestException {
@@ -16,5 +18,18 @@ public class PetStoreClient {
                 .body(new ObjectMapper().writeValueAsString(myPet))
                 .asString();
         Assert.assertEquals(200,response.getStatus());
+    }
+
+    public Pet getPetFromPetStoreById(int id) throws UnirestException, IOException {
+
+        HttpResponse<String> response= Unirest.get("https://petstore.swagger.io/v2/pet/" + id)
+                .header("Content-Type", "Application/json")
+                .asString();
+        Assert.assertEquals(200,response.getStatus());
+
+        ObjectMapper mapper = new ObjectMapper();
+        Pet storedPet = mapper.readValue(response.getBody(), Pet.class);
+
+        return storedPet;
     }
 }

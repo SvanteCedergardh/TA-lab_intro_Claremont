@@ -14,7 +14,7 @@ import java.io.IOException;
 public class PetStoreTest {
 
     @Test
-    public void getPetInPetStore() throws UnirestException, JsonProcessingException {
+    public void putPetInPetStore() throws UnirestException, JsonProcessingException {
 
         String[] photoUrls = {"http://Bob the Builder.se", "http://Bob.trash"};
 
@@ -25,6 +25,14 @@ public class PetStoreTest {
 
         new PetStoreClient().putPetInPetStore(myPet);
     }
+    @Test
+    public void getPetInPetStore() throws UnirestException, IOException {
+        
+        Pet storedPet = new PetStoreClient().getPetFromPetStoreById(1337);
+
+        Assert.assertEquals( "Bob the builder",storedPet.getName());
+    }
+
 
     @Test
     public void serializeVehicle() throws JsonProcessingException {
