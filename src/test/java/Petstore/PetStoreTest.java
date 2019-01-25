@@ -1,37 +1,47 @@
 package Petstore;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 import org.junit.Assert;
 import org.junit.Test;
+import se.claremont.test.Vehicle;
+
+import java.io.IOException;
 
 public class PetStoreTest {
 
     @Test
-    public void getPetInPetStore() throws UnirestException {
+    public void getPetInPetStore() throws UnirestException, JsonProcessingException {
 
-         HttpResponse<String> response= Unirest.post("https://petstore.swagger.io/v2/pet")
-                .header("Content-Type", "Application/json")
-                .body("{\n" +
-                        "  \"id\": 0,\n" +
-                        "  \"category\": {\n" +
-                        "    \"id\": 0,\n" +
-                        "    \"name\": \"string\"\n" +
-                        "  },\n" +
-                        "  \"name\": \"doggie\",\n" +
-                        "  \"photoUrls\": [\n" +
-                        "    \"string\"\n" +
-                        "  ],\n" +
-                        "  \"tags\": [\n" +
-                        "    {\n" +
-                        "      \"id\": 0,\n" +
-                        "      \"name\": \"string\"\n" +
-                        "    }\n" +
-                        "  ],\n" +
-                        "  \"status\": \"available\"\n" +
-                        "}")
-                .asString();
-        Assert.assertEquals(200,response.getStatus());
+        String[] photoUrls = {"http://Bob the Builder.se", "http://Bob.trash"};
+
+        Pet myPet = new Pet();
+        myPet.setId(1337);
+        myPet.setName("Bob the builder");
+        myPet.setPhotoUrls(photoUrls);
+
+        new PetStoreClient().putPetInPetStore(myPet);
+    }
+
+    @Test
+    public void serializeVehicle() throws JsonProcessingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        String myVolvo = mapper.writeValueAsString(new Vehicle("Volvo", "v40"));
+
+        System.out.println(myVolvo);
+    }
+    @Test
+    public void deSerializeVehicle() throws IOException {
+
+        String myVolvoJson = "{\"make\":\"Volvo\",\"model\":\"v40\",\"owner\":null,\"price\":0}";
+        ObjectMapper mapper = new ObjectMapper();
+
+        Vehicle myVolvo = mapper.readValue(myVolvoJson, Vehicle.class);
+
+        Assert.assertEquals("v40", myVolvo.getModel());
     }
 }

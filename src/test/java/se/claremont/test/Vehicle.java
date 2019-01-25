@@ -7,6 +7,10 @@ public class Vehicle {
     private String owner;
     private int price;
 
+    public Vehicle() {
+
+    }
+
     public Vehicle(String make, String model) {
 
         this.make = make;
@@ -29,5 +33,13 @@ public class Vehicle {
     public int getPrice() {
 
         return price;
+    }
+    public String getMake() {
+
+        return make;
+    }
+    public String getModel() {
+
+        return model;
     }
 }
